@@ -8,13 +8,19 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach($allCat as $cat){?>
-        <tr>
-            <td><?= $cat->getId_cat(); ?></td>
-            <td><?= $cat->getNom_cat() ?></td>
-            <td><a href="" class="btn btn-success" ><i class="fas fa-pen"></i></a></td>
-            <td><a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a></td>
-        </tr>
+        <?php foreach ($allCat as $cat) { ?>
+            <tr>
+                <td><?= $cat->getId_cat(); ?></td>
+                <td><?= $cat->getNom_cat() ?></td>
+                <td class="text-center">
+                    <a class="btn btn-success" href="index.php?action=edit_cat&id=<?= $cat->getId_cat(); ?>">
+                        <i class="fas fa-pen"></i>
+                    </a>
+                </td>
+                <td class="text-center">
+                    <a class="btn btn-danger" href="index.php?action=delete_cat&id=<?= $cat->getId_cat(); ?>" onclick="return confirm('Êtes vous sur de vouloir supprimer cette catégorie?')"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
         <?php } ?>
     </tbody>
 </table>
@@ -23,4 +29,3 @@
 $contenu = ob_get_clean();
 require_once('./views/templateAdmin.php');
 ?>
-
