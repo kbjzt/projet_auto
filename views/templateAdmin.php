@@ -8,54 +8,53 @@
 
 </head>
 <body>
-
 <div class="sidenav">
   <!-- <a href="#about">About</a>
   <a href="#services">Services</a>
   <a href="#clients">Clients</a>
-  <a href="#contact">Contact</a>  -->
-  <div class="text-center"> 
-      <i class="fas fa-car fa-3x text-white"></i>      
-      <a href=""><i class="fas fa-sign-out-alt"></i>Deconexion</a>
-</div>
-  <button class="dropdown-btn">Categorie 
+  <a href="#contact">Contact</a> -->
+  
+  <div class="text-center">
+      <i class="fas fa-car fa-3x text-white"></i>
+  </div>
+  <a href=""><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
+  <button class="dropdown-btn"><i class="fa fa-list-alt"></i> Catégorie
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Ajout</a>
-    <a href="index.php?action=list_cat">Liste</a>
-    
+    <a href="index.php?action=add_cat"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
+    <a href="index.php?action=list_cat"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
   </div>
 
-  <button class="dropdown-btn">Voiture
+  <button class="dropdown-btn"><i class="fas fa-car-side"></i> Voiture
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Ajout</a>
-    <a href="#">Liste</a>
-</div>
-
-<button class="dropdown-btn">Grade 
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container">
-    <a href="#">Ajout</a>
-    <a href="#">Liste</a>
+    <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
+    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
   </div>
 
-<button class="dropdown-btn"> <i class="fas fa-users"></i> Utilisateurs    
+  <button class="dropdown-btn"><i class="fa fa-user-tag"></i> Grade
     <i class="fa fa-caret-down"></i>
-</button>
-<div class="dropdown-container">
-    <a href="#">Ajout</a>
-    <a href="#">Liste</a>
-    <a href="#">Inscription</a>
-    <a href="#">Connexion</a>
-</div>
+  </button>
+  <div class="dropdown-container">
+    <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
+    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
+  </div>
 
-
-<!-- <a href="#contact">Search</a> -->
+  <button class="dropdown-btn"><i class="fas fa-users"></i> Utilisateurs
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
+    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
+    <a href="#"><i class="fa fa-registered" aria-hidden="true"></i> Inscription</a>
+    <a href="#"><i class="fas fa-key"></i> Connexion</a>
+  </div>
+  <!-- <a href="#contact">Search</a> -->
 </div>
+<h1 class="display-6 text-center font-monospace text-decoration-underline">Liste Catégories</h1>
+
 
 <div class="main ">
   <h1 class="bg-secondary text-center text-white">Administration</h1>
