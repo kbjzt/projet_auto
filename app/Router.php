@@ -2,16 +2,21 @@
 
 require_once('./models/Driver.php');
 require_once('./models/Categorie.php');
+require_once('./models/Voiture.php');
 require_once('./models/admin/AdminCategorieModel.php');
+require_once('./models/admin/AdminVoitureModel.php');
 require_once('./controllers/admin/AdminCategorieController.php');
+require_once('./controllers/admin/AdminVoitureController.php');
 
 class Router
 {
     private $ctrca;
+    private $ctrv;
 
     public function __construct()
     {
         $this->ctrca = new AdminCategorieController();
+        $this->ctrv = new AdminVoitureController();
     }
 
     public function getPath()
@@ -34,6 +39,10 @@ class Router
                 case 'add_cat':
                     $this->ctrca->addCat();
                     break;
+                case 'list_v':
+                    $this->ctrv->listVoiture();
+                    break;
+                
             }
         }
     }

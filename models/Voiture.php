@@ -9,6 +9,13 @@ class Voiture{
     private $annee;
     private $description;
     private $categorie;
+    private $image;
+
+
+    public function __construct()
+    {
+        $this->categorie = new Categorie();
+    }
 
     
     public function getId_v()
@@ -116,6 +123,26 @@ class Voiture{
     public function setCategorie($categorie)
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }
