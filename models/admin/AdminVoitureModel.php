@@ -2,12 +2,28 @@
 
 class AdminVoitureModel extends Driver{
 
-    public function getVoitures(){
-        $sql = "SELECT * FROM Voiture v
+    public function getVoitures($search = null){
+
+        if(!empty($search)){
+            $sql = "SELECT * FROM Voiture v
                 INNER JOIN Categorie c
-                ON v.id_cat = c.id_cat";
-            
-        $result = $this->getRequest($sql);
+                ON v.id_cat = c.id_cat
+                WHERE marque LIKE :marque OR modele LIKE :modele OR nom_cat LIKE :nom_cat
+                ORDER BY id_v";
+
+            $searchParams = ["marque"=>"$search%", "modele"=>"$search%", "nom_cat"=>"$search%"];
+            $result = $this->getRequest($sql, $searchParams);
+
+
+        }else{
+            $sql = "SELECT * FROM Voiture v
+                    INNER JOIN Categorie c
+                    ON v.id_cat = c.id_cat
+                    ORDER BY id_v";
+                
+            $result = $this->getRequest($sql);
+        }
+
         $voitures = $result->fetchAll(PDO::FETCH_OBJ);
 
         $datas = [];
@@ -28,7 +44,76 @@ class AdminVoitureModel extends Driver{
 
             array_push($datas, $v);
         }
-        return $datas;
+        if($result->rowCount() > 0){
+            return $datas;
+        }else{
+            return 'Aucun resulat!';
+        }
         
     }
+
+    public function insertVoiture(Voiture $voiture){
+        $sql = "INSERT INTO Voiture (marque, modele, prix, image, quantite, annee, description, id_cat)
+                VALUES ( :marque, :modele, :prix, :image, :quantite, :annee, :descr, :id_cat )";
+        $tabParams = ["marque"=>$voiture->getMarque(), "modele"=>$voiture->getModele(), "prix"=>$voiture->getPrix(), "image"=>$voiture->getImage(), "quantite"=>$voiture->getQuantite(), "annee"=>$voiture->getAnnee(), "descr"=>$voiture->getDescription(), "id_cat"=>$voiture->getCategorie()->getId_cat()];
+        $result = $this->getRequest($sql, $tabParams);
+
+        return $result;
+    }
+
+    public function deleteVoiture(Voiture $voiture){
+        $sql = "DELETE FROM Voiture WHERE id_v = :id";
+
+        $result = $this->getRequest($sql, ['id'=>$voiture->getId_v()] );
+        $nb = $result->rowCount();
+        return $nb;
+
+    }
+
+    public function voitureItem(Voiture $vParam){
+        $sql = "SELECT * FROM Voiture
+                WHERE id_v = :id";
+        $result = $this->getRequest($sql, ['id'=>$vParam->getId_v()]);
+        
+        if($result->rowCount() > 0){
+            $voitureRow = $result->fetch(PDO::FETCH_OBJ);
+            $editVoiture = new Voiture();
+            $editVoiture->setId_v($voitureRow->id_v);
+            $editVoiture->setMarque($voitureRow->marque);
+            $editVoiture->setModele($voitureRow->modele);
+            $editVoiture->setPrix($voitureRow->prix);
+            $editVoiture->setQuantite($voitureRow->quantite);
+            $editVoiture->setAnnee($voitureRow->annee);
+            $editVoiture->setImage($voitureRow->image);
+            $editVoiture->setDescription($voitureRow->description);
+            $editVoiture->getCategorie()->setId_cat($voitureRow->id_cat);
+
+            return $editVoiture;
+
+
+        }
+    }
+
+    public function updateVoiture(Voiture $updateV){
+        if($updateV->getImage() === ""){
+            $sql = "UPDATE Voiture 
+                SET marque = :marque, modele = :modele, prix = :prix,  annee = :annee, quantite = :quantite,  description = :description, id_cat = :id_cat
+                WHERE id_v = :id_v";
+        
+        $tabParams = ["marque"=>$updateV->getMarque(), "modele"=>$updateV->getModele(), "prix"=>$updateV->getPrix(), "annee"=>$updateV->getAnnee(), "quantite"=>$updateV->getQuantite(),  "description"=>$updateV->getDescription(), "id_cat"=>$updateV->getCategorie()->getId_cat(), "id_v"=>$updateV->getId_v() ];
+        }else{
+            $sql = "UPDATE Voiture 
+            SET marque = :marque, modele = :modele, prix = :prix,  annee = :annee, quantite = :quantite, image = :image, description = :description, id_cat = :id_cat
+            WHERE id_v = :id_v";
+    
+    $tabParams = ["marque"=>$updateV->getMarque(), "modele"=>$updateV->getModele(), "prix"=>$updateV->getPrix(), "annee"=>$updateV->getAnnee(), "quantite"=>$updateV->getQuantite(),"image"=>$updateV->getImage(),  "description"=>$updateV->getDescription(), "id_cat"=>$updateV->getCategorie()->getId_cat(), "id_v"=>$updateV->getId_v() ];
+        }
+       
+
+        $result = $this->getRequest($sql, $tabParams);
+        
+        return $result->rowCount();
+    }
+
+
 }

@@ -8,10 +8,11 @@ class Utilisateurs{
     private $pass;
     private $email;
     private $grade;
+    private $statut;
 
     public function __construct()
     {
-        
+        $this->grade = new Grade();
     }
 
    
@@ -108,6 +109,26 @@ class Utilisateurs{
     public function setGrade($grade)
     {
         $this->grade = $grade;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of status
+     */ 
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * Set the value of statut
+     *
+     * @return  self
+     */ 
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
 
         return $this;
     }

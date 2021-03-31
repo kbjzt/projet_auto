@@ -10,7 +10,7 @@ class AdminCategorieController
 
     public function __construct()
     {
-        $this->adCat = new AmdminCategorieModel();
+        $this->adCat = new AdminCategorieModel();
     }
 
     public function listCategories()

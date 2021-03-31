@@ -3,7 +3,7 @@
 // require_once('../Categorie.php');
 // require_once('../Driver.php');
 
-class AmdminCategorieModel extends Driver{
+class AdminCategorieModel extends Driver{
 
     public function getCategories(){
         $sql = "SELECT * FROM Categorie";
