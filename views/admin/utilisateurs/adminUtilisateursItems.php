@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 ob_start();
@@ -19,32 +16,28 @@ ob_start();
             <th>Action</th>
         </tr>
     </thead>
-   
+
     <tbody>
-       <?php foreach($allUsers as $user){ ?>
-        <tr class="text-center align-middle">
-            <td><?= $user->getId()?></td>
-            <td><?= $user->getNom()?></td>
-            <td><?= $user->getPrenom()?></td>
-            <td><?= $user->getEmail()?></td>
-            <td><?= $user->getLogin()?></td>
-            <td><?= $user->getGrade()->getNom_g();?></td>
-            <td>
-                <!-- <a href="" class="btn btn-success"><i class="fas"></i><?php //echo ($user->getStatut()) ? "Désactiver" : "Activer" ;?></a> -->
-            </td>
-              <td>
-              <!--
-                <a href="index.php?action=edit_user&id=<?= $user->getId();?>" class="btn btn-success m-2"><i class="fas fa-edit "></a></i>
-                <a href="index.php?action=delete_user&id=<?= $user->getId();?>" class="btn btn-danger m-2"><i class="fas fa-trash "></i></a> -->
-                <?php 
-                    echo($user->getStatut())
-                    ? "<a href='index.php?action=list_u&id=".$user->getId()."&statut=".$user->getStatut()."'  onclick='return confirm(`Êtes vous sûr de vouloir désactiver`)' class='btn btn-success'><i class='fas fa-unlock'> Desactiver </i></a>"
-                    : "<a href='index.php?action=list_u&id=".$user->getId()."&statut=".$user->getStatut()."'  onclick='return confirm(`Êtes vous sûr de vouloir activer`)'  class='btn btn-danger'><i class='fas fa-lock'> Activer </i></a>"
-                    
-                ?>
+        <?php foreach ($allUsers as $user) { ?>
+            <tr class="text-center align-middle">
+                <td><?= $user->getId() ?></td>
+                <td><?= $user->getNom() ?></td>
+                <td><?= $user->getPrenom() ?></td>
+                <td><?= $user->getEmail() ?></td>
+                <td><?= $user->getLogin() ?></td>
+                <td><?= $user->getGrade()->getNom_g(); ?></td>
+                <?php if($_SESSION['Auth']->id_g == 1){ ?>
+
+                <td>
+                    <?php
+                    echo ($user->getStatut())
+                        ? "<a href='index.php?action=list_u&id=" . $user->getId() . "&statut=" . $user->getStatut() . "'  onclick='return confirm(`Êtes vous sûr de vouloir désactiver`)' class='btn btn-success'><i class='fas fa-unlock'> Desactiver </i></a>"
+                        : "<a href='index.php?action=list_u&id=" . $user->getId() . "&statut=" . $user->getStatut() . "'  onclick='return confirm(`Êtes vous sûr de vouloir activer`)'  class='btn btn-danger'><i class='fas fa-lock'> Activer </i></a>"
+                    ?>
                 </td>
-       
-        </tr>
+                <?php } ?>
+
+            </tr>
         <?php } ?>
     </tbody>
 </table>
@@ -55,4 +48,3 @@ $contenu = ob_get_clean();
 require_once('./views/templateAdmin.php');
 
 ?>
-

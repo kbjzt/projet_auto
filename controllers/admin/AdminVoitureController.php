@@ -12,6 +12,8 @@ class AdminVoitureController
 
     public function listVoiture()
     {
+        AuthController::islogged();
+
         // var_dump($_POST);
         if (isset($_POST['soumis']) && !empty($_POST['search'])) {
             $search = trim(htmlentities(addslashes($_POST['search'])));
@@ -34,6 +36,8 @@ class AdminVoitureController
 
     public function addVoitures()
     {
+        AuthController::islogged();
+
         if (isset($_POST['soumis']) && !empty($_POST['marque']) && !empty($_POST['prix'])) {
             $marque = trim(htmlspecialchars(addslashes($_POST['marque'])));
             $modele = trim(htmlspecialchars(addslashes($_POST['modele'])));
@@ -69,6 +73,9 @@ class AdminVoitureController
     }
     public function removeVoiture()
     {
+        AuthController::islogged();
+        AuthController::accesUser();
+
         if (isset($_GET['id']) && $_GET['id'] < 1000 && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
             $id = trim($_GET['id']);
 
@@ -84,6 +91,8 @@ class AdminVoitureController
 
     public function editVoiture()
     {
+        AuthController::islogged();
+
         if (isset($_GET['id']) && $_GET['id'] < 1000 && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
             $id = trim($_GET['id']);
             $editV = new Voiture();

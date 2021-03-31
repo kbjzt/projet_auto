@@ -17,7 +17,16 @@
   <div class="text-center">
       <i class="fas fa-car fa-3x text-white"></i>
   </div>
-  <a href=""><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
+  <?php if(isset($_SESSION['Auth'])){ ?>
+                    <a class=" text-white" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false" style="font-size: initial;">
+                        <?= $_SESSION['Auth']->login; ?>
+                    </a>
+                    <?php } ?>
+  <?php if(isset($_SESSION['Auth'])){  ?>
+
+  <a href="index.php?action=logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
+
   <button class="dropdown-btn"><i class="fa fa-list-alt"></i> Catégorie
     <i class="fa fa-caret-down"></i>
   </button>
@@ -34,6 +43,8 @@
     <a href="index.php?action=list_v"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
   </div>
 
+<?php if($_SESSION['Auth']->id_g != 3){ ?>
+
   <button class="dropdown-btn"><i class="fa fa-user-tag"></i> Grade
     <i class="fa fa-caret-down"></i>
   </button>
@@ -47,16 +58,19 @@
   </button>
   <div class="dropdown-container">
     <!-- <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a> -->
-    <a href="#"><i class="fa fa-registered" aria-hidden="true"></i> Inscription</a>
-    <a href="#"><i class="fas fa-key"></i> Connexion</a>
+    <?php if($_SESSION['Auth']->id_g == 1) { ?>
+    <a href="index.php?action=register"><i class="fa fa-registered" aria-hidden="true"></i> Inscription</a>
+    <?php } ?>
     <a href="index.php?action=list_u"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
   </div>
   <!-- <a href="#contact">Search</a> -->
+<?php }} ?>
 </div>
 
 
 <div class="main ">
   <h1 class="bg-secondary text-center text-white">Administration</h1>
+  <span><?php if(isset($_SESSION['Auth'])) echo $_SESSION['Auth']->nom; ?></span>
   <?= $contenu; ?>
 </div>
 
