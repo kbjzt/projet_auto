@@ -17,13 +17,12 @@
   <div class="text-center">
       <i class="fas fa-car fa-3x text-white"></i>
   </div>
-  <?php if(isset($_SESSION['Auth'])){ ?>
-                    <a class=" text-white" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false" style="font-size: initial;">
-                        <?= $_SESSION['Auth']->login; ?>
-                    </a>
-                    <?php } ?>
+
+  
   <?php if(isset($_SESSION['Auth'])){  ?>
+  <div id="user" class="mt-4 mb-1" ><i class="fa fa-user"></i>
+  <?php if(isset($_SESSION['Auth'])) echo $_SESSION['Auth']->login;  ?>
+                    </div>
 
   <a href="index.php?action=logout"><i class="fas fa-sign-out-alt" aria-hidden="true"></i> Déconnexion</a>
 
@@ -49,8 +48,8 @@
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
-    <a href="#"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
+    <a href="index.php?action=add_g"><i class="fa fa-plus" aria-hidden="true"></i> Ajout</a>
+    <a href="index.php?action=list_g"><i class="fa fa-bars" aria-hidden="true"></i> Liste</a>
   </div>
 
   <button class="dropdown-btn"><i class="fas fa-users"></i> Utilisateurs
@@ -70,7 +69,6 @@
 
 <div class="main ">
   <h1 class="bg-secondary text-center text-white">Administration</h1>
-  <span><?php if(isset($_SESSION['Auth'])) echo $_SESSION['Auth']->nom; ?></span>
   <?= $contenu; ?>
 </div>
 

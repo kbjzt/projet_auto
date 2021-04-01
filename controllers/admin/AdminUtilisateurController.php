@@ -62,6 +62,10 @@ class AdminUtilisateurController
     }
 
     public function addUsers(){
+        AuthController::islogged();
+        AuthController::accesUser();
+
+
         if (isset($_POST['soumis'])){
             if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['pass']) >= 4){
                 $nom = trim(htmlspecialchars(addslashes($_POST['nom'])));

@@ -30,7 +30,11 @@ body {
   cursor: pointer;
   outline: none;
 }
-
+#user {
+  padding: 6px 8px 6px 16px;
+  font-size: 20px;
+  color: #818181;
+}
 /* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
   color: #f1f1f1;

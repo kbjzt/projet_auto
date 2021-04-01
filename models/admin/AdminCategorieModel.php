@@ -64,7 +64,7 @@ class AdminCategorieModel extends Driver{
     }
 
     public function insertCategorie(Categorie $cat){
-        $sql = "INSERT Categorie (nom_cat)
+        $sql = "INSERT INTO Categorie (nom_cat)
                 VALUES (:nom)";
 
         $result = $this->getRequest($sql, array('nom'=>$cat->getNom_cat()));

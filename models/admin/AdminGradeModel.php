@@ -1,5 +1,6 @@
 <?php
 class AdminGradeModel extends Driver{
+
     public function getGrade(){
         $sql = "SELECT * FROM Grade ";
 
@@ -17,4 +18,22 @@ class AdminGradeModel extends Driver{
         }
         return $tabGrade;
     }
+
+    public function deleteGrade($id){
+        $sql = "DELETE FROM Grade WHERE id_g = :id";
+
+        $result = $this->getRequest($sql, ['id'=>$id]);
+        $nb = $result->rowCount();
+        return $nb;
+    }
+
+    public function insertGrade(Grade $g){
+        $sql = "INSERT INTO Grade (nom_g)
+                VALUES (:nom) ";
+        
+        $result = $this->getRequest($sql, ['nom'=>$g->getNom_g()]);
+        return $result;
+    }
+
+
 }

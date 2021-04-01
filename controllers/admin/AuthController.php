@@ -17,7 +17,7 @@ class AuthController{
 
     public static function accesUser(){
         if($_SESSION['Auth']->id_g == 3){
-            header('location:ibdex.php?action=login');
+            header('location:index.php?action=login');
             exit;
         }
     }
