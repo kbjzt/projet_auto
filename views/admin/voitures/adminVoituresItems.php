@@ -56,5 +56,5 @@
   </table>
 <?php 
     $contenu = ob_get_clean();
-    require_once('./views/templateAdmin.php');
+    require_once('./views/admin/templateAdmin.php');
 ?>

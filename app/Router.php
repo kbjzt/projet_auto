@@ -23,6 +23,7 @@ class Router
     private $ctrv;
     private $ctru;
     private $ctrg;
+    private $ctrpub;
 
     public function __construct()
     {
@@ -30,6 +31,7 @@ class Router
         $this->ctrv = new AdminVoitureController();
         $this->ctru = new AdminUtilisateurController();
         $this->ctrg = new AdminGradeController();
+        $this->ctrpub = new PublicController();
     }
 
     public function getPath()
@@ -84,6 +86,8 @@ class Router
                     $this->ctrg->addGrade();
                 
             }
+        }else{
+            $this->ctrpub->getPubVoitures();
         }
     }
 }

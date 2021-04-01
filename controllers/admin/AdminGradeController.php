@@ -10,12 +10,16 @@ class AdminGradeController{
 
     public function listGrade()
     {
+        AuthController::islogged();
+
         $allGrade = $this->adGrade->getGrade();
         require_once('./views/admin/grades/adminGradesItems.php');
     }
 
     public function removeGrade()
     {
+        AuthController::islogged();
+
         if(isset($_GET['id']) && $_GET['id'] < 1000 && filter_var($_GET['id'], FILTER_VALIDATE_INT)){
             $id = trim($_GET['id']);
 
@@ -27,6 +31,8 @@ class AdminGradeController{
     }
 
     public function addGrade(){
+        AuthController::islogged();
+
         if(isset($_POST['soumis']) && !empty($_POST['grade'])){
             $nom_grade = trim(htmlentities(addslashes($_POST['grade'])));
             $newGrade = new Grade();

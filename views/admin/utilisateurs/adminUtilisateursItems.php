@@ -45,6 +45,6 @@ ob_start();
 <?php
 $contenu = ob_get_clean();
 // echo $contenu;
-require_once('./views/templateAdmin.php');
+require_once('./views/admin/templateAdmin.php');
 
 ?>

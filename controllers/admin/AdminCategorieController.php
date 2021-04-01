@@ -17,7 +17,7 @@ class AdminCategorieController
     {
         AuthController::islogged();
         $allCat = $this->adCat->getCategories();
-        require_once('./views/admin/adminCategoriesItems.php');
+        require_once('./views/admin/categories/adminCategoriesItems.php');
         // return $allCat;
     }
 
@@ -61,7 +61,7 @@ class AdminCategorieController
                     header('location:index.php?action=list_cat');
                 }
             }
-            require_once('./views/admin/adminEditCat.php');
+            require_once('./views/admin/categories/adminEditCat.php');
         }
     }
 
@@ -79,7 +79,7 @@ class AdminCategorieController
             }
 
         }
-        require_once('./views/admin/adminAddCat.php');
+        require_once('./views/admin/categories/adminAddCat.php');
 
     }
 
