@@ -80,10 +80,19 @@ class Router
                     break;
                 case 'list_g':
                     $this->ctrg->listGrade();
+                    break;
                 case 'delete_g':
                     $this->ctrg->removeGrade();
+                    break;
                 case 'add_g':
                     $this->ctrg->addGrade();
+                    break;
+                case 'checkout':
+                    $this->ctrpub->recap();
+                    break;
+                case 'order':
+                    $this->ctrpub->orderCar();
+                    break;
                 
             }
         }else{
